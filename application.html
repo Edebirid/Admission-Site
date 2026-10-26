@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Admission application{% endblock %}
+{% block content %}
+<section class="form-card wide">
+<h1>Pupil admission application</h1>
+<p class="muted">Fields marked as required must be completed.</p>
+<form method="post">
+  {{ form.hidden_tag() }}
+  {% for field in [form.pupil_full_name, form.date_of_birth, form.gender, form.class_applying_for, form.previous_school, form.guardian_name, form.guardian_phone, form.home_address] %}
+    <label for="{{ field.id }}">{{ field.label.text }}{% if field.flags.required %} *{% endif %}</label>
+    {{ field(class_="input" if field.type != "TextAreaField" else "input textarea") }}
+    {% for error in field.errors %}<small class="error">{{ error }}</small>{% endfor %}
+  {% endfor %}
+  {{ form.submit(class_="button full") }}
+</form>
+</section>
+{% endblock %}

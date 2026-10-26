@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Review application{% endblock %}
+{% block content %}
+<h1>Review application</h1>
+<section class="card">
+  <h2>{{ record.pupil_full_name }}</h2>
+  <p><strong>Date of birth:</strong> {{ record.date_of_birth.strftime('%d %b %Y') }}</p>
+  <p><strong>Gender:</strong> {{ record.gender }}</p>
+  <p><strong>Class applying for:</strong> {{ record.class_applying_for }}</p>
+  <p><strong>Previous school:</strong> {{ record.previous_school or 'Not provided' }}</p>
+  <p><strong>Parent/Guardian:</strong> {{ record.guardian_name }}</p>
+  <p><strong>Phone:</strong> {{ record.guardian_phone }}</p>
+  <p><strong>Email:</strong> {{ record.applicant.email }}</p>
+  <p><strong>Home address:</strong><br>{{ record.home_address }}</p>
+  <form method="post" class="status-form">
+    {{ form.hidden_tag() }}
+    <label for="{{ form.status.id }}">{{ form.status.label.text }}</label>
+    {{ form.status(class_="input") }}
+    {{ form.submit(class_="button") }}
+  </form>
+</section>
+{% endblock %}

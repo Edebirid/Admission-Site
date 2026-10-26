@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Create account{% endblock %}
+{% block content %}
+<section class="form-card">
+<h1>Create a parent/guardian account</h1>
+<form method="post">
+  {{ form.hidden_tag() }}
+  {% for field in [form.full_name, form.email, form.password, form.confirm_password] %}
+    <label for="{{ field.id }}">{{ field.label.text }}</label>
+    {{ field(class_="input", autocomplete="new-password" if field.type == "PasswordField" else "on") }}
+    {% for error in field.errors %}<small class="error">{{ error }}</small>{% endfor %}
+  {% endfor %}
+  {{ form.submit(class_="button full") }}
+</form>
+<p>Already registered? <a href="{{ url_for('login') }}">Log in</a>.</p>
+</section>
+{% endblock %}

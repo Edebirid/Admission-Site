@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Welcome | School Admission Portal{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">ADMISSIONS</p>
+  <h1>Welcome to our School Admission Portal</h1>
+  <p>Parents and guardians can create an account, submit a pupil's admission details, and check the application status.</p>
+  <div class="actions">
+    <a class="button" href="{{ url_for('register') }}">Start an application</a>
+    <a class="button secondary" href="{{ url_for('login') }}">Log in</a>
+  </div>
+</section>
+<section class="card">
+  <h2>How it works</h2>
+  <ol>
+    <li>Create a parent/guardian account.</li>
+    <li>Complete the pupil's admission application.</li>
+    <li>Log in later to check the status.</li>
+  </ol>
+  <p class="muted">Please enter accurate information. Contact the school office if you need help.</p>
+</section>
+{% endblock %}

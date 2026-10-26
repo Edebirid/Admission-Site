@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Your dashboard{% endblock %}
+{% block content %}
+<h1>Hello, {{ current_user.full_name }}</h1>
+<p>Use this page to manage your pupil's admission application.</p>
+{% if application %}
+<section class="card">
+  <h2>Application summary</h2>
+  <p><strong>Pupil:</strong> {{ application.pupil_full_name }}</p>
+  <p><strong>Class:</strong> {{ application.class_applying_for }}</p>
+  <p><strong>Status:</strong> <span class="badge">{{ application.status }}</span></p>
+  <p><strong>Submitted:</strong> {{ application.submitted_at.strftime('%d %b %Y, %I:%M %p') }}</p>
+  <a class="button" href="{{ url_for('application') }}">Edit application</a>
+</section>
+{% else %}
+<section class="card">
+  <h2>No application submitted yet</h2>
+  <p>Complete the form to apply for admission.</p>
+  <a class="button" href="{{ url_for('application') }}">Complete application</a>
+</section>
+{% endif %}
+{% endblock %}

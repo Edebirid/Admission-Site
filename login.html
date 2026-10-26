@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<section class="form-card">
+<h1>Log in</h1>
+<form method="post">
+  {{ form.hidden_tag() }}
+  {% for field in [form.email, form.password] %}
+    <label for="{{ field.id }}">{{ field.label.text }}</label>
+    {{ field(class_="input", autocomplete="username" if field.name == "email" else "current-password") }}
+    {% for error in field.errors %}<small class="error">{{ error }}</small>{% endfor %}
+  {% endfor %}
+  {{ form.submit(class_="button full") }}
+</form>
+<p>New to the portal? <a href="{{ url_for('register') }}">Create an account</a>.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Manage applications{% endblock %}
+{% block content %}
+<h1>Admission applications</h1>
+<p class="muted">This page is available only to administrator accounts.</p>
+{% if applications %}
+<div class="table-wrap"><table>
+<thead><tr><th>Pupil</th><th>Class</th><th>Parent/Guardian</th><th>Submitted</th><th>Status</th><th></th></tr></thead>
+<tbody>{% for record in applications %}
+<tr>
+<td>{{ record.pupil_full_name }}</td><td>{{ record.class_applying_for }}</td>
+<td>{{ record.guardian_name }}<br><span class="muted">{{ record.guardian_phone }}</span></td>
+<td>{{ record.submitted_at.strftime('%d %b %Y') }}</td><td><span class="badge">{{ record.status }}</span></td>
+<td><a href="{{ url_for('review_application', application_id=record.id) }}">Review</a></td>
+</tr>
+{% endfor %}</tbody></table></div>
+{% else %}<section class="card"><p>No applications have been submitted yet.</p></section>{% endif %}
+{% endblock %}
